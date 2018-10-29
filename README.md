@@ -1,4 +1,6 @@
-# pm_project_backend
+# PinMap
+
+## A Lambda School FSW13 PM Project
 
 ### Backend repo for the Lambda PM Project: PinMap - An app for users to display destinations they have been to and destinations on their bucket list.
 
