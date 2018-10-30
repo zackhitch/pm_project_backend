@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
 
     tbl.string('state/province', 128);
 
-    tbl.string('country', 128).notNullable();
+    tbl.string('country', 128);
 
     tbl.float('longitude', 256).notNullable();
 
