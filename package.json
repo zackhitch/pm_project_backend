@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/zackhitch/pm_project_backend.git",
-  "author": "zackhitch <zmhitchcock+git@gmail.com>",
+  "author": "kait-schorr and zackhitch",
   "license": "MIT",
   "scripts": {
     "test": "jest --watch --verbose",
