@@ -8,21 +8,20 @@
 
 ## API
 
-| Method | Endpoint                    | Request                                               | Response                  |
-| ------ | --------------------------- | ----------------------------------------------------- | ------------------------- |
-| GET    | /users                      |                                                       | Array of user Objects.    |
-| GET    | /users/:email_address       | email_address\*                                       | Single user Object.       |
-| GET    | /users/id/:id               | id\*                                                  | Single user Object.       |
-| POST   | /users                      | email_address\*, first_name, last_name, home_location | ID of newly created user. |
-| PUT    | /users/:id                  | id\*                                                  | Count of updated users.   |
-| DELETE | /users/:id                  | id\*                                                  | Count of updated users.   |
-|        |                             |                                                       |                           |
-| GET    | /locations                  |                                                       |                           |
-| GET    | /locations/city/:city       |                                                       |                           |
-| GET    | /locations/state/:state     |                                                       |                           |
-| GET    | /locations/country/:country |                                                       |                           |
-| POST   | /locations                  |                                                       |                           |
-| PUT    | /locations/:id              |                                                       |                           |
-| DELETE | /locations/:id              |                                                       |                           |
+| Method | Endpoint                    | Request                                                  | Response                      |
+| ------ | --------------------------- | -------------------------------------------------------- | ----------------------------- |
+| GET    | /users                      |                                                          | Array of user Objects.        |
+| GET    | /users/:email_address       | email_address\*                                          | Single user Object.           |
+| GET    | /users/id/:id               | id\*                                                     | Single user Object.           |
+| POST   | /users                      | email_address\*, first_name, last_name, home_location    | ID of newly created user.     |
+| PUT    | /users/:id                  | id\*                                                     | Count of updated users.       |
+| DELETE | /users/:id                  | id\*                                                     | Count of updated users.       |
+| GET    | /locations                  |                                                          | Array of location Objects.    |
+| GET    | /locations/city/:city       | city\*                                                   | Array of location Objects.    |
+| GET    | /locations/state/:state     | state\*                                                  | Array of location Objects.    |
+| GET    | /locations/country/:country | country\*                                                | Array of location Objects.    |
+| POST   | /locations                  | city\*, state/province, country, longitude\*, latitude\* | ID of newly created location. |
+| PUT    | /locations/:id              | id\*                                                     | Count of updated locations.   |
+| DELETE | /locations/:id              | id\*                                                     | Count of updated locations.   |
 
 \* - indicates required field

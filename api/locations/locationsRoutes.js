@@ -35,6 +35,8 @@ router.get('/locations/city/:city', (req, res) => {
 });
 
 router.get('/locations/state/:state', (req, res) => {
+  const { state } = req.params;
+
   loc
     .findByState(state)
     .then(locations => {
@@ -52,6 +54,8 @@ router.get('/locations/state/:state', (req, res) => {
 });
 
 router.get('/locations/country/:country', (req, res) => {
+  const { country } = req.params;
+
   loc
     .findByCountry(country)
     .then(locations => {
@@ -73,9 +77,9 @@ router.post('/locations', (req, res) => {
 
   loc
     .addLocation(location)
-    .then(id => {
-      if (id > 0) {
-        res.status(200).json(id);
+    .then(ids => {
+      if (ids > 0) {
+        res.status(200).json(ids[0]);
       } else {
         res.status(404).json({
           message: `Unable to add location, missing required fields.`,
