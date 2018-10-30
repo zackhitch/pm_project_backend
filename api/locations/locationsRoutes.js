@@ -16,6 +16,8 @@ router.get('/locations', (req, res) => {
 });
 
 router.get('/locations/city/:city', (req, res) => {
+  const { city } = req.params;
+
   loc
     .findByCity(city)
     .then(locations => {
@@ -114,11 +116,9 @@ router.delete('/locations/:id', (req, res) => {
       if (count > 0) {
         res.status(200).json(count);
       } else {
-        res
-          .status(404)
-          .json({
-            message: `No location found to remove, by the supplied ID.`,
-          });
+        res.status(404).json({
+          message: `No location found to remove, by the supplied ID.`,
+        });
       }
     })
     .catch(err => {

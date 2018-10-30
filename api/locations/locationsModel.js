@@ -6,7 +6,9 @@ module.exports = {
   },
 
   findByCity: function(city) {
-    return db('locations').where({ city });
+    return db('locations')
+      .where({ city })
+      .first();
   },
 
   findByState: function(state) {
