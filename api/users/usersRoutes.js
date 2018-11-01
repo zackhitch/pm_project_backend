@@ -1,4 +1,6 @@
 const express = require('express');
+const OktaJwtVerifier = require('@okta/jwt-verifier')
+const OktaClient = require('../../lib/OktaClient');
 
 const users = require('./usersModel.js');
 
@@ -63,6 +65,36 @@ router.post('/users', (req, res) => {
       res.status(500).json({ ErrorMessage: err.message });
     });
 });
+
+
+/** Registers a new user through Okta */
+router.post('/register', (req, res, next) => {
+  if (!req.body) return res.sendStatus(400);
+  const newUser = {
+    profile: {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      login: req.body.email
+    },
+    credentials: {
+      password: {
+        value: req.body.password
+      }
+    }
+  };
+  oktaClient
+    .createUser(newUser)
+    .then(user => {
+      res.status(201);
+      res.send(user);
+    })
+    .catch(err => {
+      res.status(400);
+      res.send(err);
+    });
+});
+
 
 router.put('/users/:id', (req, res) => {
   const { id } = req.params;
