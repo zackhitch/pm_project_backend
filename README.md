@@ -13,7 +13,8 @@
 | GET    | /users                      |                                                          | Array of user Objects.        |
 | GET    | /users/:email_address       | email_address\*                                          | Single user Object.           |
 | GET    | /users/id/:id               | id\*                                                     | Single user Object.           |
-| POST   | /users                      | email_address\*, first_name, last_name, home_location    | ID of newly created user.     |
+| POST   | /users \*\*                 | email_address\*, first_name, last_name, home_location    | ID of newly created user.     |
+| POST   | /register                   | okta user                                                | ID of registered new user.    |
 | PUT    | /users/:id                  | id\*                                                     | Count of updated users.       |
 | DELETE | /users/:id                  | id\*                                                     | Count of removed users.       |
 | GET    | /locations                  |                                                          | Array of location Objects.    |
@@ -25,3 +26,5 @@
 | DELETE | /locations/:id              | id\*                                                     | Count of removed locations.   |
 
 \* - indicates required field
+
+\*\* - deprecated
