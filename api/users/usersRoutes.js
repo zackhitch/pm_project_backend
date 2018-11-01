@@ -17,10 +17,10 @@ router.get('/users', (req, res) => {
     });
 });
 
-router.get('/users/:username', (req, res) => {
-  const { username } = req.params;
+router.get('/users/:email_address', (req, res) => {
+  const { email_address } = req.params;
   users
-    .findByUsername(username)
+    .findByEmail(email_address)
     .then(user => {
       if (user) {
         res.status(200).json(user);
@@ -35,18 +35,37 @@ router.get('/users/:username', (req, res) => {
     });
 });
 
-router.post('/users', (req, res) => {
-  const user = req.body;
-
+router.get('/users/id/:id', (req, res) => {
+  const { id } = req.params;
   users
-    .addUser(user)
-    .then(username => {
-      res.status(201).json(username);
+    .findByUserId(id)
+    .then(user => {
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res
+          .status(404)
+          .json({ message: `No user found to get, by the supplied user ID.` });
+      }
     })
     .catch(err => {
       res.status(500).json({ ErrorMessage: err.message });
     });
 });
+
+router.post('/users', (req, res) => {
+  const user = req.body;
+
+  users
+    .addUser(user)
+    .then(ids => {
+      res.status(201).json(ids[0]);
+    })
+    .catch(err => {
+      res.status(500).json({ ErrorMessage: err.message });
+    });
+});
+
 
 /** Registers a new user through Okta */
 router.post('/register', (req, res, next) => {
@@ -76,18 +95,19 @@ router.post('/register', (req, res, next) => {
     });
 });
 
-router.put('/users/:username', (req, res) => {
-  const { username } = req.params;
+
+router.put('/users/:id', (req, res) => {
+  const { id } = req.params;
   const user = req.body;
 
   users
-    .updateUser(username, user)
+    .updateUser(id, user)
     .then(userUpdatedCount => {
       if (userUpdatedCount > 0) {
-        res.status(20).json(userUpdatedCount);
+        res.status(200).json(userUpdatedCount);
       } else {
         res.status(404).json({
-          message: `No user found to update, by the supplied username; or username was not supplied.`,
+          message: `No user found to update, by the supplied user ID; or user was not supplied.`,
         });
       }
     })
@@ -96,11 +116,11 @@ router.put('/users/:username', (req, res) => {
     });
 });
 
-router.delete('/users/:username', (req, res) => {
-  const { username } = req.params;
+router.delete('/users/:id', (req, res) => {
+  const { id } = req.params;
 
   users
-    .removeUser(username)
+    .removeUser(id)
     .then(count => {
       if (count > 0) {
         res.status(200).json(count);

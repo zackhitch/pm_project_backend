@@ -4,9 +4,15 @@ function find() {
   return db('users');
 }
 
-function findByUsername(username) {
+function findByUserId(id) {
   return db('users')
-    .where({ username })
+    .where({ id })
+    .first();
+}
+
+function findByEmail(email_address) {
+  return db('users')
+    .where({ email_address })
     .first();
 }
 
@@ -16,21 +22,22 @@ function addUser(user) {
     .into('users');
 }
 
-function updateUser(username, changes) {
+function updateUser(id, changes) {
   return db('users')
-    .where({ username })
+    .where({ id })
     .update(changes);
 }
 
-function removeUser(username) {
+function removeUser(id) {
   return db('users')
-    .where({ username })
+    .where({ id })
     .del();
 }
 
 module.exports = {
   find,
-  findByUsername,
+  findByUserId,
+  findByEmail,
   addUser,
   updateUser,
   removeUser,
