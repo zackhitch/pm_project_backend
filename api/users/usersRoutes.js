@@ -85,12 +85,15 @@ router.post('/register', (req, res, next) => {
   oktaClient
     .createUser(newUser)
     .then(user => {
-      res.status(201);
-      res.send(user);
+      users
+        .addUser(user)
+        .then(console.log({ message: `user successfully added to the DB.` }))
+        .catch(console.log({ ErrorMessage: `unable to add user to the DB.` }));
+
+      res.status(201).json(user);
     })
     .catch(err => {
-      res.status(400);
-      res.send(err);
+      res.status(400).json({ ErrorMessage: err.message });
     });
 });
 
